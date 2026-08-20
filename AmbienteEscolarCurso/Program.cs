@@ -1,4 +1,9 @@
 using AmbienteEscolarCurso.Data;
+using AmbienteEscolarCurso.Services.Aluno;
+using AmbienteEscolarCurso.Services.Historico;
+using AmbienteEscolarCurso.Services.Materia;
+using AmbienteEscolarCurso.Services.Professor;
+using AmbienteEscolarCurso.Services.Turma;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +12,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<IAlunoInterface, AlunoService>();
+builder.Services.AddScoped<IHistoricoInterface, HistoricoService>();
+builder.Services.AddScoped<IProfessorInterface, ProfessorService>();
+builder.Services.AddScoped<ITurmaInterface, TurmaService>();
+builder.Services.AddScoped<IMateriaInterface, MateriaService>();
 
 var app = builder.Build();
 
