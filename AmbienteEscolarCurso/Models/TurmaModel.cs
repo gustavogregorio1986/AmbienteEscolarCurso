@@ -10,6 +10,8 @@
 
         public List<ProfessorModel> Professores { get; set; }
 
+        public string Modalidade { get; set; }
+
         public List<AlunoModel> Alunos { get; set; }
     }
 }
