@@ -1,4 +1,5 @@
-﻿using AmbienteEscolarCurso.Services.Turma;
+﻿using AmbienteEscolarCurso.Models;
+using AmbienteEscolarCurso.Services.Turma;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AmbienteEscolarCurso.Controllers
@@ -12,11 +13,24 @@ namespace AmbienteEscolarCurso.Controllers
             _turmaInterface = turmaInterface;
         }
 
+        [HttpGet]
         public IActionResult ListarTurmas()
         {
             var turmas = _turmaInterface.ListarTurmas();
 
             return View(turmas);
+        }
+
+        [HttpGet]
+        public IActionResult CadastrarTurma()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CadastrarTurma(TurmaModel turma)
+        {
+            return View();  
         }
     }
 }
