@@ -1,2 +1,46 @@
-﻿
-<h1>Turmaaaas</h1>
+﻿@model List<TurmaModel>
+
+<div class="mb-5 d-flex justify-content-between align-items-center">
+    <h2>Listagem de Turmas</h2>
+    <a class="btn btn-success" asp-action="CadastrarTurma" asp-controller="CadastrarTurma">
+        Cadastrar Turma
+    </a>
+</div>
+
+<table class="table table-striped table-bordered" id="registros">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Descrição</th>
+            <th>Modalidade</th>
+            <th>Turno</th>
+            <th>Professores</th>
+            <th>Alunos</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var turma in Model)
+        {
+            <tr>
+                <td>@turma.Id</td>
+                <td>@turma.Descricao</td>
+                <td>@turma.Modalidade</td>
+                <td>@turma.Turno</td>
+                <td>
+                    <a href="#" class="professores"
+                       data-idturma="@turma.Id"
+                       data-nometurma="@turma.Descricao">
+                        Professores
+                    </a>
+                </td>
+                <td>
+                    <a href="#" class="alunos"
+                       data-idturma="@turma.Id"
+                       data-nometurma="@turma.Descricao">
+                        Alunos
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
