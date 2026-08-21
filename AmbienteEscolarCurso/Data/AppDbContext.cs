@@ -21,6 +21,8 @@ namespace AmbienteEscolarCurso.Data
 
         public DbSet<HistoricoModel> Historicos { get; set; }
 
+        public DbSet<ProfessorModel> Professores { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<MateriaModel>().HasData(

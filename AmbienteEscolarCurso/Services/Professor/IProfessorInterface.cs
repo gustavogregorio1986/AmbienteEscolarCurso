@@ -1,6 +1,9 @@
-﻿namespace AmbienteEscolarCurso.Services.Professor
+﻿using AmbienteEscolarCurso.Models;
+
+namespace AmbienteEscolarCurso.Services.Professor
 {
     public interface IProfessorInterface
     {
+        List<ProfessorModel> BuscarProfessores();
     }
 }

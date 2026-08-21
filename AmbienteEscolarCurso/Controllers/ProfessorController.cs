@@ -1,12 +1,21 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AmbienteEscolarCurso.Services.Professor;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AmbienteEscolarCurso.Controllers
 {
     public class ProfessorController : Controller
     {
-        public IActionResult Index()
+        private readonly IProfessorInterface _professorInterface;
+
+        public ProfessorController(IProfessorInterface professorInterface)
         {
-            return View();
+            _professorInterface = professorInterface;
+        }
+
+        public IActionResult ListarProfessores()
+        {
+            var professores = _professorInterface.BuscarProfessores();
+            return View(professores);
         }
     }
 }

@@ -1,7 +1,9 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace AmbienteEscolarCurso.Models
 {
+    [Table("Professores")]
     public class ProfessorModel
     {
         public int Id { get; set; }
@@ -14,7 +16,7 @@ namespace AmbienteEscolarCurso.Models
 
         public int MateriaId { get; set; }
 
-        public MateriaModel materia { get; set; }
+        public MateriaModel Materia { get; set; }
 
         [JsonIgnore]
         public List<TurmaModel> Turmas { get; set; }
