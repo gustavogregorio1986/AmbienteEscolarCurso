@@ -5,5 +5,7 @@ namespace AmbienteEscolarCurso.Services.Turma
     public interface ITurmaInterface
     {
         List<TurmaModel> ListarTurmas();
+
+        TurmaModel CadastrarTurma(TurmaModel turma);
     }
 }

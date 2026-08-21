@@ -28,9 +28,28 @@ namespace AmbienteEscolarCurso.Controllers
         }
 
         [HttpPost]
-        public IActionResult CadastrarTurma(TurmaModel turma)
+        public IActionResult CadastrarTurma(TurmaModel turmaModel)
         {
-            return View();  
+            if(ModelState.IsValid)
+            {
+                
+                    var turma = _turmaInterface.CadastrarTurma(turmaModel);
+                   
+                
+                    if(turma == null)
+                    {
+                        TempData["MensagemErro"] = "Nome de turma repetido ou problema no servidor.";
+                    return View(turmaModel);
+                    }
+
+                TempData["MensagemSucesso"] = "Cadastro de Turma com sucesso!";
+                return RedirectToAction("ListarTurmas");
+            }
+            else
+            {
+                TempData["MensagemErro"] = "Campos Obrigatorio não foram preenchidos!";
+                return View(turmaModel);
+            }
         }
     }
 }

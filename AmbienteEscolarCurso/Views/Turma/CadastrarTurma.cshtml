@@ -3,6 +3,20 @@
 <h1>Cadastrar Turma</h1>
 @model TurmaModel
 
+@if(TempData["MensagemSucesso"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["MensagemSucesso"]
+    </div>
+}
+
+@if(TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["MensagemErro"]
+    </div>
+}   
+
 <form asp-action="CadastrarTurma" asp-controller="Turma" method="post">
     <div class="form-group">
         <label for="descricao">Descrição:</label>

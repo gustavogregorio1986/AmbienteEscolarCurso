@@ -1,5 +1,19 @@
 ﻿@model List<TurmaModel>
 
+@if (TempData["MensagemSucesso"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["MensagemSucesso"]
+    </div>
+}
+
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["MensagemErro"]
+    </div>
+}
+
 <div class="mb-5 d-flex justify-content-between align-items-center">
     <h2>Listagem de Turmas</h2>
     <a class="btn btn-success" asp-action="CadastrarTurma" asp-controller="Turma">
