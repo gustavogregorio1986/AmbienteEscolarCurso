@@ -12,10 +12,18 @@ namespace AmbienteEscolarCurso.Controllers
             _professorInterface = professorInterface;
         }
 
+        [HttpGet]
         public IActionResult ListarProfessores()
         {
             var professores = _professorInterface.BuscarProfessores();
             return View(professores);
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult DetalhesProfessor(int id)
+        {
+            var professor = _professorInterface.ObterProfessorComTurmaAluno(id);
+            return View(professor);
         }
     }
 }
