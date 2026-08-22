@@ -1,0 +1,62 @@
+﻿@using AmbienteEscolarCurso.Dto.Professor
+@model ProfessorCriacaoDto
+
+<h1>Cadastro de Professor</h1>
+
+@if (TempData["MensagemSucesso"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["MensagemSucesso"]
+    </div>
+}
+
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["MensagemErro"]
+    </div>
+}
+
+<form asp-action="CadastrarProfessor" asp-controller="Professor" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group mb-3">
+        <label class="form-label">Nome</label>
+        <input asp-for="Nome" class="form-control" placeholder="Nome do professor" />
+        <span asp-validation-for="Nome" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label class="form-label">Email</label>
+        <input asp-for="Email" class="form-control" placeholder="Email do professor" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label class="form-label">Data de Contratação</label>
+        <input asp-for="DataContratacao" class="form-control" type="date" />
+        <span asp-validation-for="DataContratacao" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label class="form-label">Selecione a Matéria</label>
+        <select asp-for="MateriaId"
+                asp-items="@(new SelectList(Model.Materias, "Id", "Descricao"))"
+                class="form-select">
+        </select>
+        <span asp-validation-for="MateriaId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label class="form-label">Selecione as Turmas</label>
+        <select asp-for="TurmasIds"
+                asp-items="@(new MultiSelectList(Model.Turmas, "Id", "Descricao"))"
+                class="form-select" multiple="multiple">
+        </select>
+        <span asp-validation-for="TurmasIds" class="text-danger"></span>
+    </div>
+
+    <div class="d-flex flex-row justify-content-center gap-3 mt-4">
+        <button type="submit" class="btn btn-primary">Criar Professor</button>
+        <a asp-action="ListarProfessores" asp-controller="Professor" class="btn btn-secondary">Voltar</a>
+    </div>
+</form>
