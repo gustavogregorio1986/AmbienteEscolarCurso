@@ -1,1 +1,68 @@
-﻿<h1>Detalheees</h1>
+﻿@model ProfessorModel
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Professor: @Model.Nome</h2>
+        <a asp-controller="Professor" asp-action="ListarProfessores" class="btn btn-primary">Voltar</a>
+    </div>
+
+    <div class="accordion" id="turmasAccordion">
+        @if (Model.Turmas != null && Model.Turmas.Any())
+        {
+            @foreach (var turma in Model.Turmas)
+            {
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading-@(turma.Id)">
+                        <button class="accordion-button collapsed" type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#collapse-@(turma.Id)"
+                                aria-expanded="false"
+                                aria-controls="collapse-@(turma.Id)">
+                            @turma.Descricao
+                        </button>
+                    </h2>
+                    <div id="collapse-@(turma.Id)" class="accordion-collapse collapse"
+                         aria-labelledby="heading-@(turma.Id)"
+                         data-bs-parent="#turmasAccordion">
+                        <div class="accordion-body">
+                            <ul class="list-group">
+                                @if (turma.Alunos.Any())
+                                {
+                                    @foreach (var aluno in turma.Alunos)
+                                    {
+                                        <li class="list-group-item">@aluno.Nome</li>
+                                    }
+                                }
+                                else
+                                {
+                                    <li class="list-group-item text-muted">Nenhum aluno vinculado.</li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="heading-empty">
+                    <button class="accordion-button collapsed" type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#collapse-empty"
+                            aria-expanded="false"
+                            aria-controls="collapse-empty">
+                        Nenhuma turma vinculada
+                    </button>
+                </h2>
+                <div id="collapse-empty" class="accordion-collapse collapse"
+                     aria-labelledby="heading-empty"
+                     data-bs-parent="#turmasAccordion">
+                    <div class="accordion-body">
+                        Este professor ainda não possui turmas cadastradas.
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
