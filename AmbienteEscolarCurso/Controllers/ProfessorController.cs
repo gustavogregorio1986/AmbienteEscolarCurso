@@ -36,6 +36,14 @@ namespace AmbienteEscolarCurso.Controllers
         }
 
         [HttpGet]
+        [Route("Professor/ProfessoresDaTurma/{idTurma}")]
+        public IActionResult ProfessoresDaTurma(int idTurma)
+        {
+            var professores = _professorInterface.BuscarProfessorProTurma(idTurma);
+            return Json(new {dados = professores});
+        }
+
+        [HttpGet]
         public IActionResult CadastrarProfessor()
         {
             // Aqui você usa um ViewModel para carregar as listas

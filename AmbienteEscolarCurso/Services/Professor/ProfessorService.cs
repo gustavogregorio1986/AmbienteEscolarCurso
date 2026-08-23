@@ -29,6 +29,24 @@ namespace AmbienteEscolarCurso.Services.Professor
             }
         }
 
+        public List<ProfessorModel> BuscarProfessorProTurma(int idTurma)
+        {
+            try
+            {
+                var professoresDaturma = _context.Turmas
+                    .Where(t => t.Id == idTurma)
+                    .SelectMany(t => t.Professores)
+                    .Include(p => p.Materia)
+                    .ToList();
+
+                return professoresDaturma;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         public void CadastrarProfessor(ProfessorCriacaoDto dto)
         {
             // Cria o objeto Professor

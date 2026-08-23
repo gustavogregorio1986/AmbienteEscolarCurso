@@ -1,7 +1,6 @@
 ﻿@model List<ProfessorModel>
 
 
-
 <div class="mb-5 d-flex justify-content-between align-items-center">
     <h2>Listagem de Professores</h2>
     <a class="btn btn-success" asp-action="CadastrarProfessor" asp-controller="Professor">
@@ -29,7 +28,7 @@
             <th>Id</th>
             <th>Nome</th>
             <th>Email</th>
-            <th>Materia</th>
+            <th>Matéria</th>
             <th></th>
         </tr>
     </thead>
@@ -42,9 +41,39 @@
                 <td>@professor.Email</td>
                 <td>@professor.Materia.Descricao</td>
                 <td>
-                   <a asp-action="DetalhesProfessor" asp-route-id="@professor.Id">Detalhes</a>
+                    <a asp-action="DetalhesProfessor" asp-route-id="@professor.Id">Detalhes</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+<!-- Modal fora de containers -->
+<div class="modal fade" id="modalProfessores" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Professores da Turma: <span id="textModalProfessores"></span></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nome</th>
+                            <th>Matéria</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/Professor/Professor.js"></script>
+

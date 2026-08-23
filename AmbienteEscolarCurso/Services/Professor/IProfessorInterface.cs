@@ -13,5 +13,7 @@ namespace AmbienteEscolarCurso.Services.Professor
         List<MateriaModel> GetMaterias();
 
         void CadastrarProfessor(ProfessorCriacaoDto dto);
+
+        List<ProfessorModel> BuscarProfessorProTurma(int idTurma);
     }
 }
