@@ -1,6 +1,9 @@
-﻿namespace AmbienteEscolarCurso.Services.Aluno
+﻿using AmbienteEscolarCurso.Models;
+
+namespace AmbienteEscolarCurso.Services.Aluno
 {
     public interface IAlunoInterface
     {
+        List<AlunoModel> BuscarAlunosPorTurma(int idTurma);
     }
 }
