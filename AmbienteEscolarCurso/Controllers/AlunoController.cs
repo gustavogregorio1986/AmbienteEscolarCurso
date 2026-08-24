@@ -40,8 +40,26 @@ namespace AmbienteEscolarCurso.Controllers
         [HttpPost]
         public IActionResult CadastrarAluno(AlunoModel alunoModel)
         {
-            BuscarTurmas();
-            return View();
+            if (ModelState.IsValid)
+            {
+                var aluno = _alunoInterface.CadastrarAluno(alunoModel);
+
+                if(aluno == null)
+                {
+                    TempData["MensagemError"] = "Ocorreu um erro na operação!";
+                    BuscarTurmas();
+                    return View(alunoModel);
+                }
+
+                TempData["MensagemSucesso"] = "Aluno foi cadastrado coim sucesso!";
+                return RedirectToAction("ListarAlunos");
+            }
+            else
+            {
+                TempData["MensagemErro"] = "Campos Obrigatorios não foram preenchidos";
+                BuscarTurmas();
+                return View(alunoModel);
+            }
         }
 
         [HttpGet]

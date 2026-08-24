@@ -1,4 +1,6 @@
-﻿using System.Text.Json.Serialization;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace AmbienteEscolarCurso.Models
 {
@@ -8,10 +10,12 @@ namespace AmbienteEscolarCurso.Models
 
         public int Matricula { get; set; }
 
+        [Required(ErrorMessage = "Campo Nome Obrigatorio")]
         public string Nome { get; set; }
 
         public string? Email { get; set; }
 
+        [Required(ErrorMessage = "Campo Data De Nascimento Obrigatorio")]
         public DateTime? DataNascimento { get; set; }
 
         public int TurmaId { get; set; }
