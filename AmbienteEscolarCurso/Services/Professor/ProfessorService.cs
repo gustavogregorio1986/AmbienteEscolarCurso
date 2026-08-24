@@ -36,6 +36,7 @@ namespace AmbienteEscolarCurso.Services.Professor
                 var professoresDaturma = _context.Turmas
                     .Where(t => t.Id == idTurma)
                     .SelectMany(t => t.Professores)
+                    .Include(p => p.Turmas)
                     .Include(p => p.Materia)
                     .ToList();
 
