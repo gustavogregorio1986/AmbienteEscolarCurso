@@ -1,5 +1,7 @@
 ﻿using AmbienteEscolarCurso.Data;
 using AmbienteEscolarCurso.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace AmbienteEscolarCurso.Services.Aluno
 {
@@ -10,6 +12,20 @@ namespace AmbienteEscolarCurso.Services.Aluno
         public AlunoService(AppDbContext context)
         {
             _context = context;
+        }
+
+
+        public List<AlunoModel> BuscarAlunos()
+        {
+            try
+            {
+                var alunos = _context.Alunos.Include(t => t.Turma).ToList();
+                return alunos;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public List<AlunoModel> BuscarAlunosPorTurma(int idTurma)

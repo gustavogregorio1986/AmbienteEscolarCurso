@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AmbienteEscolarCurso.Controllers
 {
-    public class AliunoController : Controller
+    public class AlunoController : Controller
     {
         private readonly IAlunoInterface _alunoInterface;
 
-        public AliunoController(IAlunoInterface alunoInterface)
+        public AlunoController(IAlunoInterface alunoInterface)
         {
             _alunoInterface = alunoInterface;
         }
@@ -15,6 +15,13 @@ namespace AmbienteEscolarCurso.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult ListarAlunos()
+        {
+            var alunos = _alunoInterface.BuscarAlunos();
+            return View(alunos);
         }
 
         [HttpGet]
