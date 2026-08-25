@@ -57,5 +57,25 @@ namespace AmbienteEscolarCurso.Controllers
             return Json(new { resultado = true, media = historico.Media });
         }
 
+        [HttpPost]
+        public JsonResult AdicionarNota(int idHistorico, string campo, string valor)
+        {
+            var historico = _historicoInterface.AdicionarNota(idHistorico, campo, valor);
+
+            if (historico == null)
+                return Json(new { resultado = false });
+
+            return Json(new { resultado = true, media = historico.Media });
+        }
+
+        [HttpPost]
+        public JsonResult Excluir(int id)
+        {
+            var resultado = _historicoInterface.ExcluirHistorico(id);
+
+            return Json(new { resultado = resultado });
+        }
+
+
     }
 }

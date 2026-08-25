@@ -75,6 +75,42 @@ namespace AmbienteEscolarCurso.Services.Historico
             }
         }
 
+        public bool ExcluirHistorico(int id)
+        {
+            var historico = _context.Historicos.FirstOrDefault(h => h.Id == id);
+            if (historico == null) return false;
+
+            _context.Historicos.Remove(historico);
+            _context.SaveChanges();
+            return true;
+        }
+
+        public HistoricoModel AdicionarNota(int idHistorico, string campo, string valor)
+        {
+            var historico = _context.Historicos
+                .Include(m => m.Materia)
+                .Include(a => a.Aluno)
+                .FirstOrDefault(h => h.Id == idHistorico);
+
+            if (historico == null) return null;
+
+            if (double.TryParse(valor, out var nota))
+            {
+                switch (campo)
+                {
+                    case "Nota1": historico.Nota1 = nota; break;
+                    case "Nota2": historico.Nota2 = nota; break;
+                    case "Nota3": historico.Nota3 = nota; break;
+                    case "Nota4": historico.Nota4 = nota; break;
+                }
+
+                historico.Media = (historico.Nota1 + historico.Nota2 + historico.Nota3 + historico.Nota4) / 4;
+                _context.SaveChanges();
+            }
+
+            return historico;
+        }
+
 
         public List<HistoricoModel> GerarHistorico(int idAluno)
         {

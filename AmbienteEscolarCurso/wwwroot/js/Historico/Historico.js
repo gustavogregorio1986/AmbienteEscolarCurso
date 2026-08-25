@@ -81,4 +81,28 @@
         });
     });
 
+    $(document).on("click", ".btn-excluir", function () {
+        var idHistorico = $(this).closest("tr").data("id");
+
+        if (confirm("Deseja realmente excluir este histórico?")) {
+            $.ajax({
+                url: "/Historico/Excluir",
+                type: "POST",
+                data: { id: idHistorico },
+                success: function (resposta) {
+                    if (resposta.resultado) {
+                        alert("Histórico excluído com sucesso!");
+                        // Remove a linha da tabela
+                        $("tr[data-id='" + idHistorico + "']").remove();
+                    } else {
+                        alert("Erro ao excluir histórico!");
+                    }
+                },
+                error: function () {
+                    alert("Falha na comunicação com o servidor.");
+                }
+            });
+        }
+    });
+
 });

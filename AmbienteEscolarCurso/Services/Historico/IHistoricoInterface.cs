@@ -12,5 +12,9 @@ namespace AmbienteEscolarCurso.Services.Historico
         List<SelectListItem> BuscarMaterias();
 
         HistoricoModel AtualizarNota(int idHistorico, string campo, string valor);
+
+        bool ExcluirHistorico(int id);
+
+        HistoricoModel AdicionarNota(int idHistorico, string campo, string valor);
     }
 }
