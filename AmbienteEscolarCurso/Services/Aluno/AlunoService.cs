@@ -14,6 +14,18 @@ namespace AmbienteEscolarCurso.Services.Aluno
             _context = context;
         }
 
+        public AlunoModel BuscarAlunoPorMatricula(int matricula)
+        {
+            try
+            {
+                var aluno = _context.Alunos.FirstOrDefault(a => a.Matricula == matricula);
+                return aluno;
+            }
+            catch
+            {
+                return null;
+            }
+        }
 
         public List<AlunoModel> BuscarAlunos()
         {

@@ -8,5 +8,7 @@ namespace AmbienteEscolarCurso.Services.Aluno
         List<AlunoModel> BuscarAlunos();
 
         AlunoModel CadastrarAluno(AlunoModel alunoModel);
+
+        AlunoModel BuscarAlunoPorMatricula(int matricula);
     }
 }
