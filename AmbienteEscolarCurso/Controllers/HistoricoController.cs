@@ -1,5 +1,8 @@
 ﻿using AmbienteEscolarCurso.Services.Historico;
+using AmbienteEscolarCurso.Services.Materia;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace AmbienteEscolarCurso.Controllers
 {
@@ -32,5 +35,14 @@ namespace AmbienteEscolarCurso.Controllers
 
             return View(historico);
         }
+
+        [HttpGet]
+        public IActionResult LancarNotas(int idAluno)
+        {
+            var notas = _historicoInterface.BuscarNotas(idAluno);
+            ViewBag.Materias = _historicoInterface.BuscarMaterias();
+            return View(notas);
+        }
+
     }
 }
