@@ -86,5 +86,6 @@ namespace AmbienteEscolarCurso.Controllers
 
             ViewBag.Turmas = listaTurma;
         }
+
     }
 }

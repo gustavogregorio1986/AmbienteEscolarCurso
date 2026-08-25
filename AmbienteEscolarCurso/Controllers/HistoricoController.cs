@@ -43,6 +43,19 @@ namespace AmbienteEscolarCurso.Controllers
             ViewBag.Materias = _historicoInterface.BuscarMaterias();
             return View(notas);
         }
+        [HttpPost]
+        [Route("/Historico/AtualizarNota")]
+        public IActionResult AtualizarNota(int idHistorico, string campo, string valor)
+        {
+            var historico = _historicoInterface.AtualizarNota(idHistorico, campo, valor);
+
+            if (historico == null)
+            {
+                return Json(new { resultado = false });
+            }
+
+            return Json(new { resultado = true, media = historico.Media });
+        }
 
     }
 }
